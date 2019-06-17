@@ -4,13 +4,19 @@ import (
 	"fmt"
 )
 
+// MetricType is a type for supported DataDog metrics
 type MetricType string
 
 const (
-	Count          = MetricType("count")
-	Gauge          = MetricType("gauge")
-	Histogram      = MetricType("histogram")
-	Check          = MetricType("check")
+	// Count tracks how many times something happened per second
+	Count = MetricType("count")
+	// Gauge measures the value of a metric at a particular time
+	Gauge = MetricType("gauge")
+	// Histogram tracks the statistical distribution of a set of values on each host.
+	Histogram = MetricType("histogram")
+	// Check sends an serviceCheck
+	Check = MetricType("check")
+	// DefaultAddress is default address for StatsD deamon
 	DefaultAddress = "localhost:8126"
 )
 

@@ -13,6 +13,7 @@ type StatsDSender interface {
 	ServiceCheck(*statsd.ServiceCheck) error
 }
 
+// StatsD holds reference for datapup client
 type StatsD struct {
 	client StatsDSender
 }

@@ -29,7 +29,7 @@ func Tag(key, value string) string {
 	return fmt.Sprintf("%s:%s", key, value)
 }
 
-// Count tracks how many times something happened per second.
+// Count tracks how many times something happened per second
 func (m *Metric) Count(value int64) error {
 	return m.client.Report(m.name, value, Count, 1, m.tags...)
 }
@@ -44,17 +44,17 @@ func (m *Metric) Decr() error {
 	return m.Count(-1)
 }
 
-// Gauge measures the value of a metric at a particular time.
+// Gauge measures the value of a metric at a particular time
 func (m *Metric) Gauge(value float64) error {
 	return m.client.Report(m.name, value, Gauge, *m.client.rate, m.tags...)
 }
 
-// Histogram tracks the statistical distribution of a set of values on each host.
+// Histogram tracks the statistical distribution of a set of values on each host
 func (m *Metric) Histogram(value float64) error {
 	return m.client.Report(m.name, value, Histogram, *m.client.rate, m.tags...)
 }
 
-// Check sends an serviceCheck with the provided name and status.
+// Check sends an serviceCheck with status statsd.ServiceCheckStatus
 func (m *Metric) Check(status statsd.ServiceCheckStatus) error {
 	return m.client.Report(m.name, status, Check, *m.client.rate, m.tags...)
 }

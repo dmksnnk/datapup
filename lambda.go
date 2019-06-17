@@ -10,18 +10,22 @@ import (
 	"github.com/DataDog/datadog-go/statsd"
 )
 
+// Clock in interface for getting current time
 type Clock interface {
 	Now() time.Time
 }
 
 type realClock struct{}
 
+// Now implements Clock interface
 func (realClock) Now() time.Time { return time.Now() }
 
 type Lambda struct {
 	clock Clock
 }
 
+// NewLambda creates new AWS Lambda sender
+// https://docs.datadoghq.com/integrations/amazon_lambda/#using-cloudwatch-logs
 func NewLambda() *Lambda {
 	return &Lambda{clock: realClock{}}
 }
@@ -51,6 +55,7 @@ func (l *Lambda) format(name string, value interface{}, metric MetricType, tags 
 		strings.Join(tags, ","))
 }
 
+// Send implements datapup sender interface
 func (l *Lambda) Send(name string, value interface{}, metric MetricType, rate float64, tags ...string) error {
 	if rate < 1 && rand.Float64() > rate {
 		return nil
