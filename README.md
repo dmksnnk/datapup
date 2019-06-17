@@ -1,5 +1,10 @@
 # Datapup
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/dmksnnk/datapup)](https://goreportcard.com/report/github.com/dmksnnk/datapup)
+[![pipeline status](https://gitlab.com/aspidima/datapup/badges/master/pipeline.svg)](https://gitlab.com/aspidima/datapup/commits/master)
+[![coverage report](https://gitlab.com/aspidima/datapup/badges/master/coverage.svg)](https://gitlab.com/aspidima/datapup/commits/master)
+[![GoDoc](https://img.shields.io/badge/GoDoc-referece-blue.svg?style=flat)](https://godoc.org/github.com/dmksnnk/datapup)
+
 Datapup is metric-centered tool for sending metrics to DataDog.
 
 ## Usage
