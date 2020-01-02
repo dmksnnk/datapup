@@ -29,6 +29,18 @@ func Tag(key, value string) string {
 	return fmt.Sprintf("%s:%s", key, value)
 }
 
+// WithTag retruns new metric with additional tag
+func (m *Metric) WithTag(t string) *Metric {
+	tags := append(m.tags, t)
+	return m.client.NewMetric(m.name, tags...)
+}
+
+// WithTags retruns new metric with additional tags
+func (m *Metric) WithTags(tags ...string) *Metric {
+	newTags := append(m.tags, tags...)
+	return m.client.NewMetric(m.name, newTags...)
+}
+
 // Count tracks how many times something happened per second
 func (m *Metric) Count(value int64) error {
 	return m.client.Report(m.name, value, Count, 1, m.tags...)
