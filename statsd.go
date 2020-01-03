@@ -19,8 +19,8 @@ type StatsD struct {
 }
 
 // NewStatsD creates new StatsD DataDog client
-func NewStatsD(addr string) (*StatsD, error) {
-	client, err := statsd.New(addr, statsd.WithAsyncUDS())
+func NewStatsD(addr string, ops ...statsd.Option) (*StatsD, error) {
+	client, err := statsd.New(addr, ops...)
 	if err != nil {
 		return nil, errors.Wrap(err, "Can't create statsd client")
 	}
